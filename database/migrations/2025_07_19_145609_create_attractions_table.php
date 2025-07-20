@@ -15,8 +15,9 @@ return new class extends Migration
         Schema::create('attractions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignIdFor(Destination::class)->constrained()->cascadeOnDelete();
+            $table->decimal('price', 10,2);
             $table->text('description')->nullable();
+            $table->foreignIdFor(Destination::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
 

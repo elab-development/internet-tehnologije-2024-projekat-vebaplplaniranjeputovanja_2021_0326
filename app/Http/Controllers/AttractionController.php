@@ -2,47 +2,58 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attraction;
 use Illuminate\Http\Request;
 
 class AttractionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // GET /api/attractions
     public function index()
     {
-        //
+        return Attraction::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // POST /api/attractions
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|integer',
+            'destination_id' => 'required|exists:destinations,id',
+            'description' => 'nullable|string',
+        ]);
+
+        $attraction = Attraction::create($data);
+
+        return response()->json($attraction, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    // GET /api/attractions/{attraction}
+    public function show(Attraction $attraction)
     {
-        //
+        return $attraction;
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    // PUT /api/attractions/{attraction}
+    public function update(Request $request, Attraction $attraction)
     {
-        //
+        $data = $request->validate([
+            'name' => 'sometimes|string|max:255',
+            'price' => 'sometimes|integer',
+            'destination_id' => 'sometimes|exists:destinations,id',
+            'description' => 'sometimes|string',
+        ]);
+
+        $attraction->update($data);
+
+        return response()->json($attraction);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    // DELETE /api/attractions/{attraction}
+    public function destroy(Attraction $attraction)
     {
-        //
+        $attraction->delete();
+
+        return response()->json(['message' => 'Attraction deleted']);
     }
 }

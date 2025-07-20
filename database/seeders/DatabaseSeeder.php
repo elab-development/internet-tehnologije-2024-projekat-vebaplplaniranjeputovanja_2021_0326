@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Attraction;
+use App\Models\Destination;
+use App\Models\TripPlan;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,9 +18,24 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+        // Napravi 10 destinacija
+        Destination::factory(10)->create()->each(function ($destination) {
+            // Svaka destinacija dobija 3 atrakcije
+            Attraction::factory(3)->create([
+                'destination_id' => $destination->id
+            ]);
+        });
+
+        // Napravi jednog korisnika sa trip planovima
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-        ]);
+            'password' => bcrypt('password'),
+        ])->each(function ($user) {
+            TripPlan::factory(5)->create([
+                'user_id' => $user->id,
+                'destination_id' => Destination::inRandomOrder()->first()->id,
+            ]);
+        });
     }
 }

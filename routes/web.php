@@ -11,3 +11,8 @@ Route::get('/', function () {
 Route::apiResource('destinations', DestinationController::class);
 Route::apiResource('attractions', AttractionController::class);
 Route::apiResource('trip-plans', TripPlanController::class);
+
+Route::get('/login', function () {
+    return view('auth.login'); // ili neka placeholder stranica
+})->name('login');
+
