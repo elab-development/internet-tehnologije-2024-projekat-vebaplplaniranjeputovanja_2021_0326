@@ -6,7 +6,7 @@ import { DestinationsComponent } from './pages/destinations/destinations.compone
 import { TripPlansComponent } from './pages/trip-plans/trip-plans.component';
 import {AttractionsComponent} from './pages/attractions/attractions.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'destinations', component: DestinationsComponent },
   { path: 'trip-plans', component: TripPlansComponent },
