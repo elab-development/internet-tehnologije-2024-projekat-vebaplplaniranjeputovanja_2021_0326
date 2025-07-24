@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7608080-71a2-420c-a19b-8b22e774b59f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaBack/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaBack/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/angular.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/pages/destinations/destinations.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/pages/destinations/destinations.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/pages/destinations/destinations.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/pages/destinations/destinations.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/services/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/services/api.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/shared/input-field/input-field.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/shared/input-field/input-field.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/shared/input-field/input-field.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/shared/input-field/input-field.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -309,6 +315,7 @@
       <workItem from="1753008136629" duration="5824000" />
       <workItem from="1753025914914" duration="2122000" />
       <workItem from="1753187345457" duration="3218000" />
+      <workItem from="1753359357136" duration="1521000" />
     </task>
     <servers />
   </component>

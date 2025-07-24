@@ -1,20 +1,21 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-input-field',
   imports: [],
   templateUrl: './input-field.component.html',
-  styleUrl: './input-field.component.css'
+  styleUrls: ['./input-field.component.css']
 })
 export class InputFieldComponent {
   @Input() placeholder: string = "Unesite tekst";
   @Input() type: string = 'text';
   @Input() value: string = '';
 
-  @Output() ValueChange = new EventEmitter<string>();
+  @Output() valueChange = new EventEmitter<string>();
   onInputChange(event: any){
     this.value = event.target.value;
-    this.ValueChange.emit(this.value);
+    this.valueChange.emit(this.value);
 
   }
 }
