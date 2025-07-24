@@ -22,7 +22,8 @@ export class RegisterComponent {
     this.api.register(this.name, this.email, this.password).subscribe({
       next: (res: any) => {
         localStorage.setItem('token', res.token);
-        localStorage.setItem('role', res.user.is_admin ? 'admin' : 'user');
+        localStorage.setItem('role', res.user.role);
+
         this.router.navigate(['/']);
       },
       error: (err) => {

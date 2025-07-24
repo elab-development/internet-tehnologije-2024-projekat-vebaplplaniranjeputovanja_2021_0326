@@ -14,8 +14,12 @@ class DestinationController extends Controller
     }
 
     // POST /api/destinations
+
     public function store(Request $request)
     {
+        if (auth()->user()->role !== 'admin') {
+            return response()->json(['message' => 'Samo admin može da kreira destinacije.'], 403);
+        }
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'country' => 'nullable|string|max:255',
@@ -36,6 +40,9 @@ class DestinationController extends Controller
     // PUT /api/destinations/{destination}
     public function update(Request $request, Destination $destination)
     {
+        if (auth()->user()->role !== 'admin') {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
         $data = $request->validate([
             'name' => 'sometimes|string|max:255',
             'country' => 'sometimes|string|max:255',
@@ -50,6 +57,9 @@ class DestinationController extends Controller
     // DELETE /api/destinations/{destination}
     public function destroy(Destination $destination)
     {
+        if (auth()->user()->role !== 'admin') {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
         $destination->delete();
 
         return response()->json(['message' => 'Destination deleted']);

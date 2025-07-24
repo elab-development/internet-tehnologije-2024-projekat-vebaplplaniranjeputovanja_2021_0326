@@ -18,10 +18,12 @@ export class LoginComponent {
   constructor(private api: ApiService, private router: Router) {}
 
   onLogin() {
+    console.log('ROLE STORED:', localStorage.getItem('role'));
     this.api.login(this.email, this.password).subscribe({
       next: (res: any) => {
         localStorage.setItem('token', res.token);
-        localStorage.setItem('role', res.user.is_admin ? 'admin' : 'user');
+        localStorage.setItem('role', res.user.role);
+
         this.router.navigate(['/']); // idi na home
       },
       error: (err) => {

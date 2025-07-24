@@ -31,10 +31,21 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => bcrypt('password'),
+            'role' => 'user'
         ])->each(function ($user) {
             TripPlan::factory(5)->create([
                 'user_id' => $user->id,
 
+            ]);
+        });
+        User::factory()->create([
+            'name' => 'Admin User',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('password'),
+            'role' => 'admin'
+        ])->each(function ($user) {
+            TripPlan::factory(1)->create([
+                'user_id' => $user->id
             ]);
         });
     }
