@@ -12,32 +12,46 @@ class TripPlanController extends Controller
     {
         // Vrati samo planove za logovanog usera
         //return TripPlan::where('user_id', $request->user()->id)->get();
-        return TripPlan::all();
+        $plans = TripPlan::with(['destinations', 'attractions'])
+            ->where('user_id', $request->user()->id)
+            ->get();
+        return response()->json($plans);
 
     }
 
     // POST /api/trip-plans
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
+        $validated = $request->validate([
+            'title' => 'required|string',
             'budget' => 'required|numeric',
-            'destination_id' => 'required|exists:destinations,id',
             'start_date' => 'required|date',
-            'end_date' => 'required|date|after_or_equal:start_date',
+            'end_date' => 'required|date',
+            'destination_ids' => 'array',
+            'destination_ids.*' => 'exists:destinations,id',
+            'attraction_ids' => 'array',
+            'attraction_ids.*' => 'exists:attractions,id',
         ]);
 
         $tripPlan = TripPlan::create([
-            'user_id' => $request->user()->id, // NE uzima iz body-ja
-            'title' => $data['title'],
-            'budget' => $data['budget'],
-            'destination_id' => $data['destination_id'],
-            'start_date' => $data['start_date'],
-            'end_date' => $data['end_date'],
+            'user_id' => $request->user()->id, // Sanctum
+            'title' => $validated['title'],
+            'budget' => $validated['budget'],
+            'start_date' => $validated['start_date'],
+            'end_date' => $validated['end_date'],
         ]);
 
-        return response()->json($tripPlan, 201);
+        if (!empty($validated['destination_ids'])) {
+            $tripPlan->destinations()->sync($validated['destination_ids']);
+        }
+
+        if (!empty($validated['attraction_ids'])) {
+            $tripPlan->attractions()->sync($validated['attraction_ids']);
+        }
+
+        return response()->json($tripPlan->load('destinations','attractions'), 201);
     }
+
 
     // GET /api/trip-plans/{id}
     public function show(TripPlan $tripPlan)

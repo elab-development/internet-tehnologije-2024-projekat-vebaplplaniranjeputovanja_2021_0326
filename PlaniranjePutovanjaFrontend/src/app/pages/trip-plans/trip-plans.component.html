@@ -1,1 +1,24 @@
-<p>trip-plans works!</p>
+<div class="container mt-3">
+  <h2>Moji planovi</h2>
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor="let plan of tripPlans">
+      <app-card
+        [title]="plan.title"
+        [description]="'Budžet: ' + plan.budget + ' € | ' + plan.start_date + ' - ' + plan.end_date"
+        imageUrl="https://picsum.photos/200/150">
+        <p><strong>Destinacije:</strong></p>
+        <ul>
+          <li *ngFor="let dest of plan.destinations">
+            🌍 {{ dest.name }}
+          </li>
+        </ul>
+        <p><strong>Atrakcije:</strong></p>
+        <ul>
+          <li *ngFor="let atr of plan.attractions">
+            ⭐ {{ atr.name }}
+          </li>
+        </ul>
+      </app-card>
+    </div>
+  </div>
+</div>

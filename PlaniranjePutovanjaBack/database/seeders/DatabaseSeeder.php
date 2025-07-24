@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
         ])->each(function ($user) {
             TripPlan::factory(5)->create([
                 'user_id' => $user->id,
-                'destination_id' => Destination::inRandomOrder()->first()->id,
+
             ]);
         });
     }

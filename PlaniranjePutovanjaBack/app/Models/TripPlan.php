@@ -18,6 +18,10 @@ class TripPlan extends Model
     {
         return $this->belongsToMany(Destination::class);
     }
+    public function attractions()
+    {
+        return $this->belongsToMany(Attraction::class);
+    }
 
     protected $fillable = [
         'user_id',

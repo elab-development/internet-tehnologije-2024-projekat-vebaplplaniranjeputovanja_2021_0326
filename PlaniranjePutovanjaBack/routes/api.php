@@ -18,7 +18,7 @@ Route::apiResource('destinations', DestinationController::class);//radi
 Route::apiResource('attractions', AttractionController::class);//radi
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);//radi
-//    Route::apiResource('trip-plans', TripPlanController::class);//radi
+    Route::apiResource('trip-plans', TripPlanController::class);//radi
 //    Route::apiResource('destinations', DestinationController::class);//radi
 //    Route::apiResource('attractions', AttractionController::class);//radi
 });
