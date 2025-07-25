@@ -5,13 +5,13 @@ import { ApiService } from '../../services/api.service';
 import { InputFieldComponent } from '../../shared/input-field/input-field.component';
 import { CardComponent } from '../../shared/card/card.component';
 import { ButtonComponent } from '../../shared/button/button.component';
-import {UppercaseDestPipe} from '../../shared/uppercase-dest.pipe';
+
 
 @Component({
   selector: 'app-destinations',
   standalone: true,
   imports: [CommonModule, FormsModule,
-    InputFieldComponent, CardComponent, ButtonComponent, UppercaseDestPipe],
+    InputFieldComponent, CardComponent, ButtonComponent],
   templateUrl: './destinations.component.html',
   styleUrls: ['./destinations.component.css']
 })
@@ -19,6 +19,12 @@ export class DestinationsComponent implements OnInit {
   destinations: any[] = [];
   search: string = '';
   role: string = '';
+  currentPage = 1;
+  pageSize = 6; // 6 kartica po strani
+
+  showAddForm: boolean = false;
+  newDest: any = { name: '', description: '', country: '' };
+  selectedFile: File | null = null;
 
   constructor(private api: ApiService) {}
 
@@ -49,10 +55,7 @@ export class DestinationsComponent implements OnInit {
   openDetails(dest: any) {
     alert(`Destinacija: ${dest.name}`);
   }
-  openAddForm() {
-    // ovde možeš otvoriti modal ili navigirati na /add-destination stranicu
-    alert('Otvori formu za dodavanje destinacije');
-  }
+
 
   editDestination(dest: any) {
     // ovde otvori modal ili stranicu za izmenu sa dest podacima
@@ -68,6 +71,51 @@ export class DestinationsComponent implements OnInit {
         },
         error: err => console.error('Greška pri brisanju:', err)
       });
+    }
+  }
+  openAddForm() {
+    this.showAddForm = true;
+  }
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+  addDestination() {
+    const token = localStorage.getItem('token') || '';
+    const formData = new FormData();
+    formData.append('name', this.newDest.name);
+    formData.append('description', this.newDest.description);
+    formData.append('country', this.newDest.country);
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile);
+    }
+
+    this.api.addDestination(formData, token).subscribe({
+      next: (res) => {
+        alert('✅ Destinacija dodata!');
+        this.destinations.push(res);
+        this.showAddForm = false;
+        this.newDest = { name: '', description: '', country: '' };
+        this.selectedFile = null;
+      },
+      error: (err) => {
+        console.error('Greška pri dodavanju destinacije:', err);
+        alert('❌ Neuspešno dodavanje');
+      }
+    });
+  }
+  get pagedDestinations(): any[] {
+    const start = (this.currentPage - 1) * this.pageSize;
+    return this.filteredDestinations.slice(start, start + this.pageSize);
+  }
+
+  nextPage() {
+    if ((this.currentPage * this.pageSize) < this.filteredDestinations.length) {
+      this.currentPage++;
+    }
+  }
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
     }
   }
 

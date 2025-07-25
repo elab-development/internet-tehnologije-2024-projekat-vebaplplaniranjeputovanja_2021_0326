@@ -33,9 +33,14 @@ export class ApiService {
     return localStorage.getItem('role') === 'admin';
   }
   deleteDestination(id: number, token: string) {
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+    const headers = { Authorization: `Bearer ${token}` };
     return this.http.delete(`${this.apiUrl}/destinations/${id}`, { headers });
   }
+  addDestination(data: FormData, token: string) {
+    const headers = { Authorization: `Bearer ${token}` };
+    return this.http.post(`${this.apiUrl}/destinations`, data, { headers });
+  }
+
 
 
 }

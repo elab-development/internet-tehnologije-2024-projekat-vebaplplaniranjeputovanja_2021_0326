@@ -1,29 +1,78 @@
-<h2>Destinacije</h2>
+<div class="container mt-4">
+  <h2 class="mb-4">Destinacije</h2>
 
-<!-- search input -->
-<app-input-field
-  placeholder="Pretraži destinacije"
-  [value]="search"
-  (valueChange)="search = $event">
-</app-input-field>
+  <!-- search input -->
+  <app-input-field
+    class="mb-4"
+    placeholder="Pretraži destinacije"
+    [value]="search"
+    (valueChange)="search = $event">
+  </app-input-field>
 
-<!-- prikaz kartica -->
-<div class="row mt-3">
-  <div class="col-md-4 mb-3" *ngFor="let dest of filteredDestinations">
-
-    <app-card
-      [title]="dest.name"
-      [description]="dest.description"
-      imageUrl="https://picsum.photos/200/150">
-      <div *ngIf="role === 'admin'" class="mt-2">
-        <button class="btn btn-warning btn-sm me-2" (click)="editDestination(dest)">✏️ Izmeni</button>
-        <button class="btn btn-danger btn-sm" (click)="deleteDestination(dest.id)">🗑️ Obriši</button>
-      </div>
-      <app-button
-        label="Detalji"
-        colorClass="btn-info"
-        (action)="openDetails(dest)">
-      </app-button>
-    </app-card>
+  <div *ngIf="role === 'admin'" class="mt-4 mb-4">
+    <app-button
+      label="➕ Dodaj destinaciju"
+      colorClass="btn-success"
+      (action)="openAddForm()">
+    </app-button>
   </div>
+  <div *ngIf="showAddForm" class="mt-4 p-3 border rounded bg-dark text-light">
+    <h4>Dodaj destinaciju</h4>
+    <form (ngSubmit)="addDestination()" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label>Naziv destinacije:</label>
+        <input type="text" class="form-control" [(ngModel)]="newDest.name" name="name">
+      </div>
+      <div class="mb-3">
+        <label>Opis:</label>
+        <textarea class="form-control" [(ngModel)]="newDest.description" name="description"></textarea>
+      </div>
+      <div class="mb-3">
+        <label>Država:</label>
+        <input type="text" class="form-control" [(ngModel)]="newDest.country" name="country">
+      </div>
+      <div class="mb-3">
+        <label>Slika:</label>
+        <input type="file" (change)="onFileSelected($event)" class="form-control">
+      </div>
+      <button class="btn btn-success">Sačuvaj</button>
+      <button type="button" class="btn btn-secondary ms-2" (click)="showAddForm=false">Otkaži</button>
+    </form>
+  </div>
+  <div class="row mt-3 gx-4 gy-4">
+    <div class="col-md-4" *ngFor="let dest of pagedDestinations">
+      <app-card
+        [title]="dest.name"
+        [description]="dest.description"
+        imageUrl="https://picsum.photos/200/150">
+
+        <div class="d-flex justify-content-between mt-3 gap-2 flex-wrap">
+          <div *ngIf="role === 'admin'" class="d-flex gap-2">
+            <app-button
+              label="Izmeni"
+              colorClass="btn-update"
+              (action)="editDestination(dest.id)">
+            </app-button>
+            <app-button
+              label="Obriši"
+              colorClass="btn-delete"
+              (action)="deleteDestination(dest.id)">
+            </app-button>
+          </div>
+          <app-button
+            label="Detalji"
+            colorClass="btn-info"
+            (action)="openDetails(dest)">
+          </app-button>
+        </div>
+
+      </app-card>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-center mt-4 mb-2">
+  <button class="btn btn-secondary me-2" (click)="prevPage()" [disabled]="currentPage === 1">⬅️</button>
+  <span class="mx-2">Strana {{currentPage}}</span>
+  <button class="btn btn-secondary ms-2" (click)="nextPage()"
+          [disabled]="currentPage * pageSize >= filteredDestinations.length">➡️</button>
 </div>

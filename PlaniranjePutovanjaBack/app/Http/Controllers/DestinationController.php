@@ -55,13 +55,10 @@ class DestinationController extends Controller
     }
 
     // DELETE /api/destinations/{destination}
-    public function destroy(Destination $destination)
+    public function destroy($id)
     {
-        if (auth()->user()->role !== 'admin') {
-            return response()->json(['message' => 'Forbidden'], 403);
-        }
-        $destination->delete();
-
-        return response()->json(['message' => 'Destination deleted']);
+        $dest = Destination::findOrFail($id);
+        $dest->delete();
+        return response()->json(['message' => 'Deleted']);
     }
 }
