@@ -40,6 +40,10 @@ export class ApiService {
     const headers = { Authorization: `Bearer ${token}` };
     return this.http.post(`${this.apiUrl}/destinations`, data, { headers });
   }
+  getCountryInfo(countryName: string) {
+    return this.http.get(`https://restcountries.com/v3.1/name/${countryName}`);
+  }
+
 
 
 

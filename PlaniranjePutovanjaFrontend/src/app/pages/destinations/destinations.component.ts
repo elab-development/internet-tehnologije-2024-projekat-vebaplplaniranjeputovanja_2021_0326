@@ -35,6 +35,16 @@ export class DestinationsComponent implements OnInit {
 
         console.log('Podaci iz API-ja:', data); // 🔥 vidi u konzoli šta dolazi
         this.destinations = data; // ako je data niz
+        this.destinations.forEach(dest => {
+          this.api.getCountryInfo(dest.country).subscribe({
+            next: (countryData: any) => {
+              if (countryData && countryData[0]?.flags?.png) {
+                dest.flag = countryData[0].flags.png;
+              }
+            },
+            error: err => console.error('Greška pri dohvaćanju zastave za', dest.country, err)
+          });
+        });
         // ako backend vraća { data: [...] }, onda uradi: this.destinations = data.data;
       },
       error: (err) => {

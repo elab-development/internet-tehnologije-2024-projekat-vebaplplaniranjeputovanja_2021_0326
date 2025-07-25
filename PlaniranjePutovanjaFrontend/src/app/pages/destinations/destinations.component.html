@@ -43,9 +43,10 @@
     <div class="col-md-4" *ngFor="let dest of pagedDestinations">
       <app-card
         [title]="dest.name"
+
         [description]="dest.description"
         imageUrl="https://picsum.photos/200/150">
-
+        <img *ngIf="dest.flag" [src]="dest.flag" alt="Zastava" style="width: 40px; height:auto; margin-top:8px;">
         <div class="d-flex justify-content-between mt-3 gap-2 flex-wrap">
           <div *ngIf="role === 'admin'" class="d-flex gap-2">
             <app-button
