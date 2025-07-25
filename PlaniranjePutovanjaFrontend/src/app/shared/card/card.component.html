@@ -1,7 +1,7 @@
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 18rem;" appHighlightTitle="#093FB4">
   <img *ngIf="imageUrl" [src]="imageUrl" class="card-img-top" alt="slika">
   <div class="card-body">
-    <h5 class="card-title">{{ title | uppercaseDest }}</h5>
+    <h5 class="card-title" >{{ title | uppercaseDest  }}</h5>
 <!--    koriscenje pipe-->
     <p class="card-text">{{ description }}</p>
     <ng-content></ng-content>
