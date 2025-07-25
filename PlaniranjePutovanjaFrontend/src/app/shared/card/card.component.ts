@@ -1,9 +1,10 @@
 import {Component, input, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {UppercaseDestPipe} from '../uppercase-dest.pipe';
 @Component({
   selector: 'app-card',
   standalone:true,
-  imports: [CommonModule],
+  imports: [CommonModule, UppercaseDestPipe],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
