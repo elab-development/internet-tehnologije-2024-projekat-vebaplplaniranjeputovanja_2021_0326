@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Destination extends Model
 {
+    use HasFactory;
     public function attractions()
     {
         return $this->hasMany(Attraction::class);
@@ -15,5 +17,11 @@ class Destination extends Model
     {
         return $this->belongsToMany(TripPlan::class);
     }
+    protected $fillable = [
+        'name',
+        'country',
+        'description',
+    ];
+
 
 }

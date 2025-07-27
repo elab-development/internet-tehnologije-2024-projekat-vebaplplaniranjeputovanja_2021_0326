@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('trip_plans', function (Blueprint $table) {
-            $table->date('departure_date');
+            $table->date('departure_date')->default('2025-01-01');
             $table->date('arrival_date')->nullable();
 
         });

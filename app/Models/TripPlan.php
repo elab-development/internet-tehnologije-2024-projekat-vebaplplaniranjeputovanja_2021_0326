@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class TripPlan extends Model
 {
+    use hasFactory;
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -17,7 +20,13 @@ class TripPlan extends Model
     }
 
     protected $fillable = [
-        // other fields
-        'budget'
+        'user_id',
+        'title',
+        'budget',
+        'destination_id',
+        'start_date',
+        'end_date',
     ];
+
+
 }
