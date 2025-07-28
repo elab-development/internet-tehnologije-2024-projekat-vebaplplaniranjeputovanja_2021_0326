@@ -1,30 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+  <component name="LaravelPint">
+    <laravel_pint_settings>
+      <LaravelPintConfiguration tool_path="$PROJECT_DIR$/PlaniranjePutovanjaBack/vendor/bin/pint" />
+    </laravel_pint_settings>
   </component>
-  <component name="ChangeListManager">
-    <list default="true" id="c7608080-71a2-420c-a19b-8b22e774b59f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaBack/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaBack/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/pages/destinations/destinations.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/PlaniranjePutovanjaFrontend/src/app/pages/destinations/destinations.component.ts" afterDir="false" />
-    </list>
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
+  <component name="MessDetectorOptionsConfiguration">
+    <option name="transferred" value="true" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
-    <pharConfigPath>$PROJECT_DIR$/PlaniranjePutovanjaBack/composer.json</pharConfigPath>
-    <execution />
+  <component name="PHPCSFixerOptionsConfiguration">
+    <option name="transferred" value="true" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  <component name="PHPCodeSnifferOptionsConfiguration">
+    <option name="highlightLevel" value="WARNING" />
+    <option name="transferred" value="true" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe">
+  <component name="PhpIncludePathManager">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/dragonmantank/cron-expression" />
       <path value="$PROJECT_DIR$/vendor/dflydev/dot-access-data" />
@@ -258,61 +249,16 @@
       <path value="$PROJECT_DIR$/PlaniranjePutovanjaBack/vendor/sebastian/diff" />
     </include_path>
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
-}</component>
-  <component name="ProjectId" id="305zWV8nPya86Q0yhAFKczoM4kR" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
+  <component name="PhpStanOptionsConfiguration">
+    <option name="transferred" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;PHPUnit.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Desktop/itehLaravel/Pixel&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  }
-}</component>
-  <component name="RunManager">
-    <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner configuration_file="$PROJECT_DIR$/PlaniranjePutovanjaBack/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
-      <method v="2" />
-    </configuration>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/PlaniranjePutovanjaBack/phpunit.xml" custom_loader_path="$PROJECT_DIR$/PlaniranjePutovanjaBack/vendor/autoload.php" use_configuration_file="true" />
+    </phpunit_settings>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-PS-243.23654.168" />
-        <option value="bundled-php-predefined-a98d8de5180a-4c3855d0ab16-com.jetbrains.php.sharedIndexes-PS-243.23654.168" />
-      </set>
-    </attachedChunks>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="c7608080-71a2-420c-a19b-8b22e774b59f" name="Changes" comment="" />
-      <created>1752932254529</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1752932254529</updated>
-      <workItem from="1752932256295" duration="1929000" />
-      <workItem from="1752936898590" duration="10595000" />
-      <workItem from="1752955650840" duration="4468000" />
-      <workItem from="1753008136629" duration="5824000" />
-      <workItem from="1753025914914" duration="2122000" />
-      <workItem from="1753187345457" duration="3218000" />
-    </task>
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+  <component name="PsalmOptionsConfiguration">
+    <option name="transferred" value="true" />
   </component>
 </project>

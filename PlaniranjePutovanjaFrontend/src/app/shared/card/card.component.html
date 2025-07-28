@@ -1,0 +1,8 @@
+<div class="card" style="width: 18rem;">
+  <img *ngIf="imageUrl" [src]="imageUrl" class="card-img-top" alt="slika">
+  <div class="card-body">
+    <h5 class="card-title">{{ title }}</h5>
+    <p class="card-text">{{ description }}</p>
+    <ng-content></ng-content>
+  </div>
+</div>
