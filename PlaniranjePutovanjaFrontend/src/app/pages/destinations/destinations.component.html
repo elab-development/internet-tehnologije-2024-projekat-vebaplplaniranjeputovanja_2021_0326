@@ -1,1 +1,24 @@
-<p>destinations works!</p>
+<h2>Destinacije</h2>
+
+<!-- search input -->
+<app-input-field
+  placeholder="Pretraži destinacije"
+  [value]="search"
+  (valueChange)="search = $event">
+</app-input-field>
+
+<!-- prikaz kartica -->
+<div class="row mt-3">
+  <div class="col-md-4 mb-3" *ngFor="let dest of filteredDestinations">
+    <app-card
+      [title]="dest.name"
+      [description]="dest.description"
+      imageUrl="https://picsum.photos/200/150">
+      <app-button
+        label="Detalji"
+        colorClass="btn-info"
+        (action)="openDetails(dest)">
+      </app-button>
+    </app-card>
+  </div>
+</div>
