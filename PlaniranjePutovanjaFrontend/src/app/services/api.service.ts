@@ -32,5 +32,10 @@ export class ApiService {
   get isAdmin(): boolean {
     return localStorage.getItem('role') === 'admin';
   }
+  deleteDestination(id: number, token: string) {
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+    return this.http.delete(`${this.apiUrl}/destinations/${id}`, { headers });
+  }
+
 
 }

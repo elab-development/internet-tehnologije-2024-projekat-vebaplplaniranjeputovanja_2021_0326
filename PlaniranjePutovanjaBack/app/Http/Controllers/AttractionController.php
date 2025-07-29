@@ -16,6 +16,9 @@ class AttractionController extends Controller
     // POST /api/attractions
     public function store(Request $request)
     {
+        if (auth()->user()->role !== 'admin') {
+            return response()->json(['message' => 'Samo admin može da kreira destinacije.'], 403);
+        }
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|integer',
@@ -37,6 +40,9 @@ class AttractionController extends Controller
     // PUT /api/attractions/{attraction}
     public function update(Request $request, Attraction $attraction)
     {
+        if (auth()->user()->role !== 'admin') {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
         $data = $request->validate([
             'name' => 'sometimes|string|max:255',
             'price' => 'sometimes|integer',
@@ -51,7 +57,11 @@ class AttractionController extends Controller
 
     // DELETE /api/attractions/{attraction}
     public function destroy(Attraction $attraction)
+
     {
+        if (auth()->user()->role !== 'admin') {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
         $attraction->delete();
 
         return response()->json(['message' => 'Attraction deleted']);

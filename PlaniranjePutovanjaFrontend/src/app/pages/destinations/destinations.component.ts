@@ -17,12 +17,15 @@ import { ButtonComponent } from '../../shared/button/button.component';
 export class DestinationsComponent implements OnInit {
   destinations: any[] = [];
   search: string = '';
+  role: string = '';
 
   constructor(private api: ApiService) {}
 
   ngOnInit(): void {
+    this.role = localStorage.getItem('role') || '';
     this.api.getDestinations().subscribe({
       next: (data) => {
+
         console.log('Podaci iz API-ja:', data); // 🔥 vidi u konzoli šta dolazi
         this.destinations = data; // ako je data niz
         // ako backend vraća { data: [...] }, onda uradi: this.destinations = data.data;
@@ -45,4 +48,26 @@ export class DestinationsComponent implements OnInit {
   openDetails(dest: any) {
     alert(`Destinacija: ${dest.name}`);
   }
+  openAddForm() {
+    // ovde možeš otvoriti modal ili navigirati na /add-destination stranicu
+    alert('Otvori formu za dodavanje destinacije');
+  }
+
+  editDestination(dest: any) {
+    // ovde otvori modal ili stranicu za izmenu sa dest podacima
+    alert('Izmena destinacije: ' + dest.name);
+  }
+
+  deleteDestination(id: number) {
+    if (confirm('Da li si siguran da želiš da obrišeš?')) {
+      const token = localStorage.getItem('token') || '';
+      this.api.deleteDestination(id, token).subscribe({
+        next: () => {
+          this.destinations = this.destinations.filter(d => d.id !== id);
+        },
+        error: err => console.error('Greška pri brisanju:', err)
+      });
+    }
+  }
+
 }

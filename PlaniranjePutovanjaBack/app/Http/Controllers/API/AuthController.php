@@ -26,8 +26,10 @@ class AuthController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => bcrypt($validated['password']),
-            'is_admin' => false // или по потреби
+
         ]);
+
+
 
         $token = $user->createToken('api-token')->plainTextToken;
 
@@ -37,7 +39,7 @@ class AuthController extends Controller
                 'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
-                'is_admin' => $user->is_admin
+                'role' => $user->role
             ]
         ]);
     }
@@ -45,27 +47,28 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
         if (!Auth::attempt($credentials)) {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
-
+        /** @var \App\Models\User $user */
         $user = Auth::user();
-        $token = $user->createToken('api-token')->plainTextToken;
+        $token = $user->createToken('auth_token')->plainTextToken;
+
 
         return response()->json([
             'token' => $token,
             'user' => [
                 'id' => $user->id,
                 'name' => $user->name,
-                'email' => $user->email,
-                'is_admin' => $user->is_admin
+                'role' => $user->role
             ]
         ]);
     }
+
 
 
     public function logout()
