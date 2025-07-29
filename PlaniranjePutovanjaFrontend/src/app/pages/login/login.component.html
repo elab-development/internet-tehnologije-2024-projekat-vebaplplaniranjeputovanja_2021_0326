@@ -1,0 +1,8 @@
+<div class="container mt-5">
+  <h2>Login</h2>
+  <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+    <input class="form-control mb-2" name="email" [(ngModel)]="email" placeholder="Email" required>
+    <input class="form-control mb-2" name="password" [(ngModel)]="password" type="password" placeholder="Password" required>
+    <button class="btn btn-primary">Login</button>
+  </form>
+</div>

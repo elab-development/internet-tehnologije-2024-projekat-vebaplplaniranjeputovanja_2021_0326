@@ -9,7 +9,8 @@ import { ButtonComponent } from '../../shared/button/button.component';
 @Component({
   selector: 'app-destinations',
   standalone: true,
-  imports: [CommonModule, FormsModule, InputFieldComponent, CardComponent, ButtonComponent],
+  imports: [CommonModule, FormsModule,
+    InputFieldComponent, CardComponent, ButtonComponent],
   templateUrl: './destinations.component.html',
   styleUrls: ['./destinations.component.css']
 })
