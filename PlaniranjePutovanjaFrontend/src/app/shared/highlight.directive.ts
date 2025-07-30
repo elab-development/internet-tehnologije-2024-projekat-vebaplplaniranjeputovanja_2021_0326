@@ -5,7 +5,7 @@ import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/
   standalone: true
 })
 export class HighlightTitleDirective {
-  @Input('appHighlightTitle') highlightColor = '#093FB4';
+  @Input('appHighlightTitle') highlightColor = '#77BEF0';
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 

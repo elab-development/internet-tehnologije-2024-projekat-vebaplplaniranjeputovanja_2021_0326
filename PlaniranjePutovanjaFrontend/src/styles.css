@@ -1,1 +1,81 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background-color: #1f1f1f;
+}
+
+.card {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border: 10px solid #57564F;
+  border-radius: 8px;
+}
+.btn-logout {
+  color: #E9E3DF;
+}
+button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #555;
+}
+:host {
+  display: block;
+  padding: 100px; /* razmak od zidova ekrana */
+}
+app-input-field {
+
+}
+app-card {
+  display: block;
+  height: 100%;
+}
+
+.d-flex {
+  align-items: center;
+}
+
+.btn-update {
+  background-color: #198754;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-update:hover {
+  background-color: #157347;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-delete:hover {
+  background-color: #bb2d3b;
+}
+
+.btn-info {
+  background-color: #0d6efd;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-info:hover {
+  background-color: #0b5ed7;
+}
