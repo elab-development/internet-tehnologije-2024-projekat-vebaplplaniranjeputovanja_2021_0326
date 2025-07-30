@@ -5,12 +5,13 @@ import { ApiService } from '../../services/api.service';
 import { InputFieldComponent } from '../../shared/input-field/input-field.component';
 import { CardComponent } from '../../shared/card/card.component';
 import { ButtonComponent } from '../../shared/button/button.component';
+import {UppercaseDestPipe} from '../../shared/uppercase-dest.pipe';
 
 @Component({
   selector: 'app-destinations',
   standalone: true,
   imports: [CommonModule, FormsModule,
-    InputFieldComponent, CardComponent, ButtonComponent],
+    InputFieldComponent, CardComponent, ButtonComponent, UppercaseDestPipe],
   templateUrl: './destinations.component.html',
   styleUrls: ['./destinations.component.css']
 })
