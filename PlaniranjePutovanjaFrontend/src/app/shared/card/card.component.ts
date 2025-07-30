@@ -1,10 +1,11 @@
 import {Component, input, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {UppercaseDestPipe} from '../uppercase-dest.pipe';
+import { HighlightTitleDirective} from '../highlight.directive';
 @Component({
   selector: 'app-card',
   standalone:true,
-  imports: [CommonModule, UppercaseDestPipe],
+  imports: [CommonModule, UppercaseDestPipe, HighlightTitleDirective],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
