@@ -30,27 +30,36 @@ export class DestinationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = localStorage.getItem('role') || '';
-    this.api.getDestinations().subscribe({
-      next: (data) => {
+    const cached = this.api.getDestinationsCached();
+    if (cached) {
+      console.log('✅ Učitam iz keša');
+      this.destinations = cached;
+    }
+    else {
+      console.log('📡 Učitam sa API-ja');
+      this.api.getDestinations().subscribe({
+        next: (data) => {
 
-        console.log('Podaci iz API-ja:', data); // 🔥 vidi u konzoli šta dolazi
-        this.destinations = data; // ako je data niz
-        this.destinations.forEach(dest => {
-          this.api.getCountryInfo(dest.country).subscribe({
-            next: (countryData: any) => {
-              if (countryData && countryData[0]?.flags?.png) {
-                dest.flag = countryData[0].flags.png;
-              }
-            },
-            error: err => console.error('Greška pri dohvaćanju zastave za', dest.country, err)
+          console.log('Podaci iz API-ja:', data); // 🔥 vidi u konzoli šta dolazi
+          this.destinations = data; // ako je data niz
+          localStorage.setItem('destinations', JSON.stringify(data));
+          this.destinations.forEach(dest => {
+            this.api.getCountryInfo(dest.country).subscribe({
+              next: (countryData: any) => {
+                if (countryData && countryData[0]?.flags?.png) {
+                  dest.flag = countryData[0].flags.png;
+                }
+              },
+              error: err => console.error('Greška pri dohvaćanju zastave za', dest.country, err)
+            });
           });
-        });
-        // ako backend vraća { data: [...] }, onda uradi: this.destinations = data.data;
-      },
-      error: (err) => {
-        console.error('Greška pri dohvaćanju destinacija:', err);
-      }
-    });
+          // ako backend vraća { data: [...] }, onda uradi: this.destinations = data.data;
+        },
+        error: (err) => {
+          console.error('Greška pri dohvaćanju destinacija:', err);
+        }
+      });
+    }
   }
 
   get filteredDestinations(): any[] {

@@ -43,6 +43,14 @@ export class ApiService {
   getCountryInfo(countryName: string) {
     return this.http.get(`https://restcountries.com/v3.1/name/${countryName}`);
   }
+  getDestinationsCached(): any[] | null {
+    const cached = localStorage.getItem('destinations');
+    return cached ? JSON.parse(cached) : null;
+  }
+
+  getDestinationsFromApi(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/destinations`);
+  }
 
 
 
