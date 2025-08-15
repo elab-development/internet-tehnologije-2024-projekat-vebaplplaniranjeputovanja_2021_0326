@@ -10,19 +10,19 @@
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">Planiranje Putovanja</a>
     <ul class="navbar-nav me-auto">
-      <li class="nav-item"><a class="nav-link" routerLink="/">Home</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/">Početna</a></li>
       <li class="nav-item"><a class="nav-link" routerLink="/destinations">Destinacije</a></li>
       <li class="nav-item"><a class="nav-link" routerLink="/attractions">Atrakcije</a></li>
       <li class="nav-item" *ngIf="isLoggedIn"><a class="nav-link" routerLink="/trip-plans">Moji Planovi</a></li>
     </ul>
 
     <ul class="navbar-nav">
-      <li class="nav-item" *ngIf="!isLoggedIn"><a class="nav-link" routerLink="/login">Login</a></li>
-      <li class="nav-item" *ngIf="!isLoggedIn"><a class="nav-link" routerLink="/register">Register</a></li>
+      <li class="nav-item" *ngIf="!isLoggedIn"><a class="nav-link" routerLink="/login">Prijava</a></li>
+      <li class="nav-item" *ngIf="!isLoggedIn"><a class="nav-link" routerLink="/register">Registracija</a></li>
       <li class="nav-item" *ngIf="isAdmin">
         <a class="nav-link" routerLink="/admin">Admin Panel</a>
       </li>
-      <li class="nav-item" *ngIf="isLoggedIn"><a class="nav-link" (click)="logout()">Logout</a></li>
+      <li class="nav-item" *ngIf="isLoggedIn"><a class="nav-link" (click)="logout()">Odjava</a></li>
     </ul>
   </div>
 </nav>

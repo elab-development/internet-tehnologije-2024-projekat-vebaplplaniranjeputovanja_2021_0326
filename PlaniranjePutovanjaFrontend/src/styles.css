@@ -79,3 +79,10 @@ app-card {
 .btn-info:hover {
   background-color: #0b5ed7;
 }
+.carousel-control-prev,
+.carousel-control-next {
+  height: 402px;         
+  width: 40px; 
+  top:42%;             
+  transform: translateY(-50%);
+}

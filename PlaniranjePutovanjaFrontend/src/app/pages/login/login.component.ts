@@ -21,9 +21,10 @@ export class LoginComponent {
     console.log('ROLE STORED:', localStorage.getItem('role'));
     this.api.login(this.email, this.password).subscribe({
       next: (res: any) => {
+        if (typeof window !== 'undefined' && localStorage) {
         localStorage.setItem('token', res.token);
         localStorage.setItem('role', res.user.role);
-
+        }
         this.router.navigate(['/']); // idi na home
       },
       error: (err) => {
