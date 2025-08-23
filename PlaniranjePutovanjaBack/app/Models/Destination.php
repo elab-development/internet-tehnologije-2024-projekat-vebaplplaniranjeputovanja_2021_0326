@@ -17,6 +17,7 @@ class Destination extends Model
     {
         return $this->belongsToMany(TripPlan::class);
     }
+   
     protected $fillable = [
         'name',
         'country',

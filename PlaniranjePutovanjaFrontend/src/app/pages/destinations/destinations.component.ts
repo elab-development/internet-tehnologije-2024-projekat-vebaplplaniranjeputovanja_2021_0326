@@ -34,26 +34,19 @@ export class DestinationsComponent implements OnInit {
     if (cached) {
       console.log('✅ Učitam iz keša');
       this.destinations = cached;
-    }
-    else {
+      // populate flags even for cached data
+      this.populateFlagsForAll();
+    } else {
       console.log('📡 Učitam sa API-ja');
       this.api.getDestinations().subscribe({
         next: (data) => {
-
           console.log('Podaci iz API-ja:', data);
-          this.destinations = data; // ako je data niz
+          // Ako backend vraća { data: [...] } prilagodi:
+          this.destinations = Array.isArray(data) ? data : (data.data || []);
+          // sačuvaj u keš
           localStorage.setItem('destinations', JSON.stringify(this.destinations));
-          this.destinations.forEach(dest => {
-            this.api.getCountryInfo(dest.country).subscribe({
-              next: (countryData: any) => {
-                if (countryData && countryData[0]?.flags?.png) {
-                  dest.flag = countryData[0].flags.png;
-                }
-              },
-              error: err => console.error('Greška pri dohvaćanju zastave za', dest.country, err)
-            });
-          });
-          // ako backend vraća { data: [...] }, onda uradi: this.destinations = data.data;
+          // fetch flags za svaku destinaciju
+          this.populateFlagsForAll();
         },
         error: (err) => {
           console.error('Greška pri dohvaćanju destinacija:', err);
@@ -61,7 +54,32 @@ export class DestinationsComponent implements OnInit {
       });
     }
   }
+  populateFlagsForAll() {
+    // Ako nema destinacija - nema šta da radi
+    if (!this.destinations || !this.destinations.length) return;
 
+    // Koristimo forEach da za svaku destinaciju zatražimo zastavu
+    this.destinations.forEach((dest, idx) => {
+      // Ako već postoji dest.flag preskačemo (može biti iz backend-a)
+      if (dest.flag) return;
+
+      // Pozovi servis koji enkoduje ime zemlje
+      this.api.getCountryInfo(dest.country).subscribe({
+        next: (countryData: any) => {
+          if (countryData && countryData[0]?.flags?.png) {
+            dest.flag = countryData[0].flags.png;
+          }
+          // Sačuvaj keš posle svake promena (možeš optimizovati)
+          localStorage.setItem('destinations', JSON.stringify(this.destinations));
+        },
+        error: err => {
+          console.error('Greška pri dohvaćanju zastave za', dest.country, err);
+
+          localStorage.setItem('destinations', JSON.stringify(this.destinations));
+        }
+      });
+    });
+  }
   get filteredDestinations(): any[] {
     if (!this.search.trim()) {
       return this.destinations;

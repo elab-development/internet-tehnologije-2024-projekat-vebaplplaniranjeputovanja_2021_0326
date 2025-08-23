@@ -17,6 +17,12 @@ export class CardComponent {
   @Input() price: number=0;
   @Input() budget: number=0;
   @Input() destination: string = '';
+
+  onImgError(event: Event) {
+    const img = event.target as HTMLImageElement;
+    img.src = 'https://placehold.co/200x150'; // fallback
+    img.onerror = null; // спречава бесконачан loop
+  }
 }
 //<app-card
 //   title="Atina"

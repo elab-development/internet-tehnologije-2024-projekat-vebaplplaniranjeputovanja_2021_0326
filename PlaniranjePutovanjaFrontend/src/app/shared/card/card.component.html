@@ -1,5 +1,6 @@
 <div class="card border-1 " style="width: 18rem;" appHighlightTitle="#77BEF0">
-  <img [src]="imageUrl || 'https://via.placeholder.com/200x150'" class="card-img-top" alt="slika">
+  <img [src]="imageUrl" alt="slika" class="card-img-top" (error)="onImgError($event)">
+
   <div class="card-body">
     <h5 class="card-title" >{{ title | uppercaseDest  }}</h5>
 

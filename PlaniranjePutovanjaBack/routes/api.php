@@ -21,14 +21,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);//radi
     Route::apiResource('trip-plans', TripPlanController::class);//radi
 
-
     Route::post('destinations', [DestinationController::class, 'store']);
     Route::post('attractions', [AttractionController::class, 'store']);
 
-
     Route::delete('/destinations/{id}', [DestinationController::class, 'destroy']);
     Route::delete('attractions', [AttractionController::class, 'destroy']);//radi
-
 
 });
 //mislim GET /destinations = public

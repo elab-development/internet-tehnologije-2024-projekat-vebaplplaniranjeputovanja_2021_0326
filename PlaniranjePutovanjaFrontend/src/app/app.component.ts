@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {RouterLink, RouterModule, RouterOutlet} from '@angular/router';
 import {CommonModule} from '@angular/common';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-root',
   standalone:true,
