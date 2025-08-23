@@ -14,13 +14,11 @@ Route::get('/user', function (Request $request) {
 Route::post('/register', [AuthController::class, 'register']);//radi
 Route::post('/login', [AuthController::class, 'login']);//radi
 
-Route::get('destinations', [DestinationController::class, 'index']);
-Route::get('attractions', [AttractionController::class, 'index']);
-
-
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);//radi
     Route::apiResource('trip-plans', TripPlanController::class);//radi
+    Route::get('destinations', [DestinationController::class, 'index']);
+    Route::get('attractions', [AttractionController::class, 'index']);
 
     Route::post('destinations', [DestinationController::class, 'store']);
     Route::post('attractions', [AttractionController::class, 'store']);

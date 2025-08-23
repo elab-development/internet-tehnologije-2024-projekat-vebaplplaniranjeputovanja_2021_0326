@@ -21,6 +21,7 @@ class Destination extends Model
         'name',
         'country',
         'description',
+        'image'
     ];
 
 

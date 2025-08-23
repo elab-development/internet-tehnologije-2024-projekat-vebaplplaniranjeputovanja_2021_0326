@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('country');
             $table->timestamps();
+            $table->string('image')->nullable();
         });
 
     }

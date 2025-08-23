@@ -11,6 +11,13 @@ class DestinationController extends Controller
     public function index()
     {
         return Destination::all();
+        foreach ($destinations as $dest) {
+            if ($dest->image) {
+                $dest->image = asset('storage/' . $dest->image);
+            }
+        }
+
+        return response()->json($destinations);
     }
 
     // POST /api/destinations
@@ -24,7 +31,13 @@ class DestinationController extends Controller
             'name' => 'required|string|max:255',
             'country' => 'nullable|string|max:255',
             'description' => 'nullable|string',
+            'image' => 'nullable|image|max:2048'
         ]);
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('destinations', 'public');
+            $data['image'] = $path;
+        }
+
 
         $destination = Destination::create($data);
 

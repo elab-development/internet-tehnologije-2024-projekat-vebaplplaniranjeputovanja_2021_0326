@@ -10,7 +10,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getDestinations(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/destinations`);
+    return this.http.get<any[]>('http://localhost:8000/api/destinations');
   }
 
   getAttractions(): Observable<any> {

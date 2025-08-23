@@ -40,9 +40,9 @@ export class DestinationsComponent implements OnInit {
       this.api.getDestinations().subscribe({
         next: (data) => {
 
-          console.log('Podaci iz API-ja:', data); // 🔥 vidi u konzoli šta dolazi
+          console.log('Podaci iz API-ja:', data);
           this.destinations = data; // ako je data niz
-          localStorage.setItem('destinations', JSON.stringify(data));
+          localStorage.setItem('destinations', JSON.stringify(this.destinations));
           this.destinations.forEach(dest => {
             this.api.getCountryInfo(dest.country).subscribe({
               next: (countryData: any) => {

@@ -45,7 +45,7 @@
         [title]="dest.name"
 
         [description]="dest.description"
-        imageUrl="https://picsum.photos/200/150">
+        [imageUrl]="dest.image ? 'http://localhost:8000/storage/' + dest.image : 'https://via.placeholder.com/200x150'">
         <img *ngIf="dest.flag" [src]="dest.flag" alt="Zastava" style="width: 40px; height:auto; margin-top:8px;">
         <div class="d-flex justify-content-between mt-3 gap-2 flex-wrap">
           <div *ngIf="role === 'admin'" class="d-flex gap-2">

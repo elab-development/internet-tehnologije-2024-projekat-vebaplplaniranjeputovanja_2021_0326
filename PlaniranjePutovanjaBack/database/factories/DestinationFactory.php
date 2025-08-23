@@ -20,6 +20,7 @@ class DestinationFactory extends Factory
             'name' => $this->faker->city(),
             'country' => $this->faker->country(),
             'description' => $this->faker->paragraph(),
+            'image' => $this->faker->imageUrl(),
         ];
     }
 }
