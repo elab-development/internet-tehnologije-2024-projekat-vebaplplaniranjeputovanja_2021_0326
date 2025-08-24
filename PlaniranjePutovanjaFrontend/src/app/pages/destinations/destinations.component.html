@@ -46,7 +46,11 @@
 
         [description]="dest.description"
 
-        [imageUrl]="dest.image ? 'http://localhost:8000/storage/' + dest.image : 'https://picsum.photos/200/150'"
+        [imageUrl]="
+  (dest.image && dest.image !== '0')
+    ? (dest.image.indexOf('http') === 0 ? dest.image : 'http://localhost:8000/storage/' + dest.image)
+    : 'assets/placeholder.png'
+"
         >
         <img *ngIf="dest.flag" [src]="dest.flag" alt="Zastava" style="width: 40px; height:auto; margin-top:8px;">
         <div class="d-flex justify-content-between mt-3 gap-2 flex-wrap">

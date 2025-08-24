@@ -36,17 +36,35 @@ export class ApiService {
     const headers = { Authorization: `Bearer ${token}` };
     return this.http.delete(`${this.apiUrl}/destinations/${id}`, { headers });
   }
-  addDestination(data: FormData, token: string) {
+  addDestination(data: FormData, token: string): Observable<any> {
     const headers = { Authorization: `Bearer ${token}` };
-    return this.http.post(`${this.apiUrl}/destinations`, data, { headers });
+    return this.http.post<any>(`${this.apiUrl}/destinations`, data, { headers });
   }
   getCountryInfo(countryName: string) {
     return this.http.get(`https://restcountries.com/v3.1/name/${countryName}`);
   }
+  // u api.service.ts
   getDestinationsCached(): any[] | null {
-    const cached = localStorage.getItem('destinations');
-    return cached ? JSON.parse(cached) : null;
+    const raw = localStorage.getItem('destinations');
+    if (!raw) return null;
+    try {
+      const parsed = JSON.parse(raw);
+      // očekujemo strukturu { items: [...], cachedAt: number }
+      if (!parsed.items || !parsed.cachedAt) return parsed.items || null;
+      const age = Date.now() - parsed.cachedAt;
+      const TTL = 5 * 60 * 1000; // 5 minuta
+      if (age > TTL) {
+        // cache expired
+        localStorage.removeItem('destinations');
+        return null;
+      }
+      return parsed.items;
+    } catch (e) {
+      localStorage.removeItem('destinations');
+      return null;
+    }
   }
+
 
   getDestinationsFromApi(): Observable<any> {
     return this.http.get(`${this.apiUrl}/destinations`);

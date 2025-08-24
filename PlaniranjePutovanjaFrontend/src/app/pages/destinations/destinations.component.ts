@@ -44,7 +44,10 @@ export class DestinationsComponent implements OnInit {
           // Ako backend vraća { data: [...] } prilagodi:
           this.destinations = Array.isArray(data) ? data : (data.data || []);
           // sačuvaj u keš
-          localStorage.setItem('destinations', JSON.stringify(this.destinations));
+          localStorage.setItem('destinations', JSON.stringify({
+            items: this.destinations,
+            cachedAt: Date.now()
+          }));
           // fetch flags za svaku destinaciju
           this.populateFlagsForAll();
         },
@@ -129,7 +132,33 @@ export class DestinationsComponent implements OnInit {
     this.api.addDestination(formData, token).subscribe({
       next: (res) => {
         alert('✅ Destinacija dodata!');
-        this.destinations.push(res);
+        // backend ponekad vraća objekat u res.data, pa radimo safe pick:
+        const newDest = res && res.data ? res.data : res;
+
+        // push u lokalni niz
+        this.destinations.push(newDest);
+
+        // odmah uzmi zastavu za novu destinaciju i setuj je
+        this.api.getCountryInfo(newDest.country).subscribe({
+          next: (countryData: any) => {
+            newDest.flag = countryData && countryData[0]?.flags?.png ? countryData[0].flags.png : null;
+            // nakon dobijanja zastave sacuvaj cache
+            localStorage.setItem('destinations', JSON.stringify({
+              items: this.destinations,
+              cachedAt: Date.now()
+            }));
+          },
+          error: (err) => {
+            console.error('Greška pri dohvaćanju zastave za novu destinaciju', err);
+            newDest.flag = null;
+            localStorage.setItem('destinations', JSON.stringify({
+              items: this.destinations,
+              cachedAt: Date.now()
+            }));
+          }
+        });
+
+        // zatvori formu i resetuj
         this.showAddForm = false;
         this.newDest = { name: '', description: '', country: '' };
         this.selectedFile = null;
@@ -139,6 +168,7 @@ export class DestinationsComponent implements OnInit {
         alert('❌ Neuspešno dodavanje');
       }
     });
+
   }
   get pagedDestinations(): any[] {
     const start = (this.currentPage - 1) * this.pageSize;
